@@ -16,6 +16,7 @@
 
 .map-image {
   width: 100%;
+  transform-origin: top right;
 }
 
 .blocks {
