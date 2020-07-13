@@ -10,30 +10,61 @@ import {
 
 import map from '../images/map.jpg';
 import map1 from '../images/map1.jpg';
+import image1 from '../images/image1.png';
+import image2 from '../images/image2.png';
+import image3 from '../images/image3.png';
 
 const animationHandlers = {
-  mapZoomIn: (mapObj) => {
-    mapZoomIn(`.${mapObj.className}`);
+  mapZoomIn: (obj) => {
+    mapZoomIn(`.${obj.className}`);
   },
-  mapZoomOut: (mapObj) => {
-    mapZoomOut(`.${mapObj.className}`);
+  mapZoomOut: (obj) => {
+    mapZoomOut(`.${obj.className}`);
   },
-  fadeIn: (pointObj) => {
-    fadeIn(`.${pointObj.className}`);
+  fadeIn: (obj) => {
+    fadeIn(`.${obj.className}`);
   },
-  fadeOut: (pointObj) => {
-    fadeOut(`.${pointObj.className}`);
+  fadeOut: (obj) => {
+    fadeOut(`.${obj.className}`);
   }
 }
 
 const maps = [
   {
+    className: 'map-image',
+    blocks: ['block1', 'block2', 'block3', 'block4', 'block5'],
+    src: map,
+    inAnimation: 'fadeIn',
+    outAnimation: 'fadeOut',
+  },
+  {
     className: 'map1',
-    blocks: 'block4',
+    blocks: ['block4'],
     src: map1,
     inAnimation: 'mapZoomIn',
     outAnimation: 'mapZoomOut',
-  }
+  },
+  {
+    className: 'image1',
+    blocks: ['block6', 'block7', 'block8'],
+    src: image1,
+    inAnimation: 'fadeIn',
+    outAnimation: 'fadeOut',
+  },
+  {
+    className: 'image2',
+    blocks: ['block7'],
+    src: image2,
+    inAnimation: 'fadeIn',
+    outAnimation: 'fadeOut',
+  },
+  {
+    className: 'image3',
+    blocks: ['block8'],
+    src: image3,
+    inAnimation: 'fadeIn',
+    outAnimation: 'fadeOut',
+  },
 ];
 
 const points = [
@@ -119,6 +150,8 @@ export default ({ intersection }) => {
         const fadeOutAnimationObjects = prevBlockAnimationObjects.filter(p => !p.blocks.includes(curBlockClassName));
         const fadeInAnimationObjects = curBlockAnimationObjects.filter(p => !p.blocks.includes(prevBlockClassName));
 
+        debugger
+
         fadeOutAnimationObjects.map(obj => animationHandlers[obj.outAnimation](obj));
         fadeInAnimationObjects.map(obj => animationHandlers[obj.inAnimation](obj));
 
@@ -131,9 +164,9 @@ export default ({ intersection }) => {
 
   return (
     <div className="map">
-      <img src={map} className="map-image" alt="logo" />
+      {/* <img src={map} className="map-image" alt="logo" /> */}
       {maps.map(({ src, className }) => (
-        <img key={src} src={src} className={className} />
+        <img key={src} src={src} className={`${className} map-images`} />
       ))}
       {points.map(({ position, className, text }) => (
         <SVGPoint key={`${position.x},${position.y}`} position={position} className={className} text={text} />

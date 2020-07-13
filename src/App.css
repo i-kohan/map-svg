@@ -21,11 +21,25 @@
   opacity: 0;
 }
 
+.map-images {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+}
+
 .map-image {
   position: absolute;
   height: 100%;
   width: 100%;
   transform-origin: top right;
+}
+
+.block6, .block7, .block8 {
+  box-sizing: border-box;
+  height: 1100px;
+  width: 100%;
+  background-color: white;
+  border: 5px solid black;
 }
 
 .blocks {
